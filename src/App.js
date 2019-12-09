@@ -15,16 +15,21 @@ function App() {
   const [products] = useState(data);
   const [cart, setCart] = useState([]);
 
-  console.log(cart);
+  //   console.log(cart);
   const addItem = item => {
     // add the given item to the cart
     setCart([...cart, item]);
   };
 
+  const removeItem = e => {
+    console.log(e);
+    setCart(cart.filter(item => item.id !== e));
+  };
+
   return (
     <div className="App">
       <ProductContext.Provider value={{ products, addItem }}>
-        <CartContext.Provider value={cart}>
+        <CartContext.Provider value={{ cart, removeItem }}>
           <Navigation />
 
           {/* Routes */}
